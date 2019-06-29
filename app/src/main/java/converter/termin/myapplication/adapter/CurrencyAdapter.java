@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     OnSomethingChanged somethingChanged;
 
 
-    public  class CurrencyViewHolder extends RecyclerView.ViewHolder {
+    public class CurrencyViewHolder extends RecyclerView.ViewHolder {
 
         TextView code, name, rate;
         CardView card;
@@ -67,7 +68,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     }
 
-    public  class CurrencyReverserViewHolder extends RecyclerView.ViewHolder {
+    public class CurrencyReverserViewHolder extends RecyclerView.ViewHolder {
 
         ImageView arrow;
         CardView card;
@@ -86,7 +87,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             itemView.findViewById(R.id.actionInfo).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Toast.makeText(view.getContext(), R.string.info, Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -105,7 +106,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onClick(View view) {
                     isArrowClicked = !isArrowClicked;
-                    if(isArrowClicked){
+                    if (isArrowClicked) {
                         ImageViewAnimatedChange(mContext, imgArrow, R.drawable.ic_arrow_forward_black_24dp);
 
                     } else {
@@ -118,7 +119,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
             List<String> currName = new ArrayList<>();
             for (Valute c : getValuteList()
-                    ) {
+            ) {
                 currName.add(c.getCharCode());
 
             }
@@ -142,9 +143,9 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                     String currName = adapterView.getSelectedItem().toString();
-                    for (Valute v: getValuteList()
-                            ) {
-                        if(v.getCharCode().equals(currName)){
+                    for (Valute v : getValuteList()
+                    ) {
+                        if (v.getCharCode().equals(currName)) {
                             somethingChanged.generateCurrencyRateCards(v);
                             editText.setText(editText.getText());
                         }
@@ -160,7 +161,8 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             editText.addTextChangedListener(new TextWatcher() {
 
                 @Override
-                public void afterTextChanged(Editable s) {}
+                public void afterTextChanged(Editable s) {
+                }
 
                 @Override
                 public void beforeTextChanged(CharSequence s, int start,
@@ -170,24 +172,24 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 @Override
                 public void onTextChanged(CharSequence s, int start,
                                           int before, int count) {
-                    if(s.length() != 0 && spinner.getSelectedItem() != null) {
+                    if (s.length() != 0 && spinner.getSelectedItem() != null) {
                         DecimalFormat formatter = new DecimalFormat("###,###.###");
                         String selectedForegnCurr = spinner.getSelectedItem().toString();
                         for (Valute v : getValuteList()
-                                ) {
+                        ) {
                             if (v.getCharCode().equals(selectedForegnCurr)) {
                                 double sum;
-                                if(isArrowClicked){
+                                if (isArrowClicked) {
                                     sum = Double.valueOf(s.toString()) / Double.valueOf(v.getValue());
                                     textCovertedSum.setText(CurrencyApp.getCurrencySymbol(v.getCharCode()).concat(formatter.format(sum)));
 
-                                }else{
+                                } else {
                                     sum = Double.valueOf(s.toString()) * Double.valueOf(v.getValue());
                                     textCovertedSum.setText(formatter.format(sum));
                                 }
                             }
                         }
-                    }else{
+                    } else {
                         textCovertedSum.setText("");
                     }
                 }
@@ -237,19 +239,19 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         if (object != null) {
             switch (object.type) {
                 case Model.CURRENCY_RATE_1:
-                    ((CurrencyViewHolder)holder).code.setText(CurrencyApp.getCurrencySymbol(object.getCurrencyCode()));
-                    ((CurrencyViewHolder)holder).name.setText(object.getCurrencyName());
-                    ((CurrencyViewHolder)holder).rate.setText(object.getCurrencyRate());
-                    ((CurrencyViewHolder)holder).card.setCardBackgroundColor(mContext.getResources().getColor(R.color.cardCurrency2));
+                    ((CurrencyViewHolder) holder).code.setText(CurrencyApp.getCurrencySymbol(object.getCurrencyCode()));
+                    ((CurrencyViewHolder) holder).name.setText(object.getCurrencyName());
+                    ((CurrencyViewHolder) holder).rate.setText(object.getCurrencyRate());
+                    ((CurrencyViewHolder) holder).card.setCardBackgroundColor(mContext.getResources().getColor(R.color.cardCurrency2));
                     break;
                 case Model.CURRENCY_RATE_2:
-                    ((CurrencyViewHolder)holder).code.setText(object.currencyCode);
-                    ((CurrencyViewHolder)holder).name.setText(object.currencyName);
-                    ((CurrencyViewHolder)holder).rate.setText(object.currencyRate);
-                    ((CurrencyViewHolder)holder).card.setCardBackgroundColor(mContext.getResources().getColor(R.color.cardCurrency2));
+                    ((CurrencyViewHolder) holder).code.setText(object.currencyCode);
+                    ((CurrencyViewHolder) holder).name.setText(object.currencyName);
+                    ((CurrencyViewHolder) holder).rate.setText(object.currencyRate);
+                    ((CurrencyViewHolder) holder).card.setCardBackgroundColor(mContext.getResources().getColor(R.color.cardCurrency2));
                     break;
                 case Model.CURRENCY_REVERSER:
-                    ((CurrencyReverserViewHolder)holder).card.setCardBackgroundColor(mContext.getResources().getColor(R.color.cardCurrency1));
+                    ((CurrencyReverserViewHolder) holder).card.setCardBackgroundColor(mContext.getResources().getColor(R.color.cardCurrency1));
                     break;
             }
         }
@@ -260,20 +262,33 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         final Animation anim_out = AnimationUtils.loadAnimation(c, android.R.anim.fade_out);
         anim_out.setDuration(250);
 
-        final Animation anim_in  = AnimationUtils.loadAnimation(c, android.R.anim.fade_in);
+        final Animation anim_in = AnimationUtils.loadAnimation(c, android.R.anim.fade_in);
         anim_in.setDuration(250);
 
-        anim_out.setAnimationListener(new Animation.AnimationListener()
-        {
-            @Override public void onAnimationStart(Animation animation) {}
-            @Override public void onAnimationRepeat(Animation animation) {}
-            @Override public void onAnimationEnd(Animation animation)
-            {
+        anim_out.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
                 v.setImageResource(resId);
                 anim_in.setAnimationListener(new Animation.AnimationListener() {
-                    @Override public void onAnimationStart(Animation animation) {}
-                    @Override public void onAnimationRepeat(Animation animation) {}
-                    @Override public void onAnimationEnd(Animation animation) {}
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                    }
                 });
                 v.startAnimation(anim_in);
             }
@@ -289,6 +304,7 @@ public class CurrencyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public ArrayList<Model> getDataSet() {
         return dataSet;
     }
+
     public List<Valute> getValuteList() {
         return valuteList;
     }

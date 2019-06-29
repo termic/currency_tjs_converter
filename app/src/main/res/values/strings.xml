@@ -3,6 +3,8 @@
     <string name="currency_descriptor_to_from">Обмен с x на y</string>
     <string name="currency_descriptor_from_smn"></string>
     <string name="currency_sum">Сумма</string>
+    <string name="info">Официальный курс валют к сомони на сегодня.
+        Конвертируй TJS в список предоставленных валют и обратно.</string>
 
     <string-array name="symbols_by_currency">
         <item>USD\u0024</item>
