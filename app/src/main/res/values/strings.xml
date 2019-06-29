@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Сомони конвертер</string>
+    <string name="currency_descriptor_to_from">Обмен с x на y</string>
+    <string name="currency_descriptor_from_smn"></string>
+    <string name="currency_sum">Сумма</string>
+
+    <string-array name="symbols_by_currency">
+        <item>USD\u0024</item>
+        <item>EUR\u20AC</item>
+        <item>RUB\u20BD</item>
+        <item>GBP\u00A3</item>
+    </string-array>
+</resources>

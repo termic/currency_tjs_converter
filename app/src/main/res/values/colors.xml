@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#f928f1e0</color>
+    <color name="cardCurrency1">#f928ccf1</color>
+    <color name="cardCurrency2">#f928f1e0</color>
+    <color name="gray">#333333</color>
+    <color name="lightGray">#545454</color>
+
+    <!-- 1st Gradient color -->
+    <color name="colorPurple_A400">#1fb0d1</color>
+    <color name="colorPurple_900">#167489</color>
+    <!-- ./ 1st Gradient color -->
+
+    <!-- 2nd Gradient color -->
+    <color name="colorAmber_A400">#34a4ff</color>
+    <color name="colorAmber_900">#1f6196</color>
+    <!-- ./ 2nd Gradient color -->
+
+    <!-- 3rd Gradient color -->
+    <color name="colorGreen_A400">#00E676</color>
+    <color name="colorGreen_900">#1B5E20</color>
+    <!-- ./ 3rd Gradient color -->
+
+    <!-- 4th Gradient color -->
+    <color name="colorBlue">#1613cf</color>
+    <color name="colorBlue2">#112274</color>
+    <!-- ./ 4th Gradient color -->
+</resources>
